@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --jcg-navy: #1a2744;
+  --jcg-gold: #c9a84c;
+  --jcg-bg: #0f1729;
+}
+
+body {
+  background: var(--jcg-bg);
+  color: #e5e7eb;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0f1729; }
+::-webkit-scrollbar-thumb { background: #2a3a5c; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #c9a84c; }
+
+/* Timeline connector */
+.timeline-line {
+  position: absolute;
+  left: 23px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, #c9a84c, #2a3a5c);
+}
+
+/* Pulse animation for active items */
+@keyframes pulse-gold {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.4); }
+  50% { box-shadow: 0 0 0 8px rgba(201, 168, 76, 0); }
+}
+.pulse-gold { animation: pulse-gold 2s infinite; }
+
+/* Card hover */
+.card-hover {
+  transition: all 0.2s ease;
+}
+.card-hover:hover {
+  border-color: #c9a84c;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(201, 168, 76, 0.1);
+}
+
+/* KPI card gradient */
+.kpi-card {
+  background: linear-gradient(135deg, #1a2744 0%, #243352 100%);
+  border: 1px solid #2a3a5c;
+}
+
+/* Settlement bar */
+.settlement-bar {
+  background: linear-gradient(90deg, #22c55e, #c9a84c, #ef4444);
+  border-radius: 9999px;
+  height: 8px;
+}
+
+/* Tab active state */
+.tab-active {
+  border-bottom: 2px solid #c9a84c;
+  color: #c9a84c;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-in { animation: fadeIn 0.3s ease forwards; }
