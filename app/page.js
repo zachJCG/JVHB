@@ -11,7 +11,7 @@ export default function LoginPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
-    if (password === 'FuckHiBob') {
+    if (password === 'JCG2026!') {
       sessionStorage.setItem('jvhb_auth', 'true');
       router.push('/dashboard');
     } else {
