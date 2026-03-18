@@ -104,24 +104,22 @@ export default function DocumentsPage() {
       <div className="max-w-6xl mx-auto fade-in">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-2xl font-bold text-white">Documents</h1>
-            <p className="text-gray-400 text-sm mt-1">{totalDocs} indexed items across {documentIndex.length} categories</p>
+            <h1 className="text-2xl font-bold" style={{ color: '#19314A' }}>Documents</h1>
+            <p className="text-sm mt-1" style={{ color: '#5C6370' }}>{totalDocs} indexed items across {documentIndex.length} categories</p>
           </div>
           <div className="flex items-center gap-3">
-            <div className="flex bg-jcg-navy border border-jcg-border rounded-lg overflow-hidden">
+            <div className="flex bg-white border rounded-md overflow-hidden" style={{ borderColor: '#E0E2E6' }}>
               <button
                 onClick={() => setView('index')}
-                className={`px-4 py-2 text-sm transition-colors ${
-                  view === 'index' ? 'bg-jcg-gold text-jcg-navy font-semibold' : 'text-gray-400 hover:text-white'
-                }`}
+                className="px-4 py-2 text-sm font-semibold transition-colors"
+                style={view === 'index' ? { background: '#19314A', color: 'white' } : { color: '#5C6370' }}
               >
                 Index
               </button>
               <button
                 onClick={() => setView('drive')}
-                className={`px-4 py-2 text-sm transition-colors ${
-                  view === 'drive' ? 'bg-jcg-gold text-jcg-navy font-semibold' : 'text-gray-400 hover:text-white'
-                }`}
+                className="px-4 py-2 text-sm font-semibold transition-colors"
+                style={view === 'drive' ? { background: '#19314A', color: 'white' } : { color: '#5C6370' }}
               >
                 Google Drive
               </button>
@@ -130,7 +128,8 @@ export default function DocumentsPage() {
               href={GDRIVE_FOLDER_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 text-sm bg-jcg-navy border border-jcg-border rounded-lg text-gray-300 hover:text-white hover:border-jcg-gold transition-colors"
+              className="px-4 py-2 text-sm rounded-md transition-colors"
+              style={{ border: '1px solid #E0E2E6', color: '#5C6370' }}
             >
               Open in Drive ↗
             </a>
@@ -138,15 +137,15 @@ export default function DocumentsPage() {
         </div>
 
         {view === 'drive' ? (
-          /* Google Drive Embed */
-          <div className="bg-jcg-navy border border-jcg-border rounded-xl overflow-hidden">
-            <div className="px-6 py-3 border-b border-jcg-border flex items-center justify-between">
-              <span className="text-sm text-gray-400">Google Drive — Case Files</span>
+          <div className="bg-white border rounded-xl overflow-hidden" style={{ borderColor: '#E0E2E6', boxShadow: '0 2px 8px rgba(25,49,74,0.06)' }}>
+            <div className="px-6 py-3 flex items-center justify-between" style={{ borderBottom: '1px solid #E0E2E6' }}>
+              <span className="text-sm" style={{ color: '#88939F' }}>Google Drive — Case Files</span>
               <a
                 href={GDRIVE_FOLDER_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs text-jcg-gold hover:underline"
+                className="text-xs hover:underline"
+                style={{ color: '#3A7CA5' }}
               >
                 Open in new tab ↗
               </a>
@@ -159,7 +158,6 @@ export default function DocumentsPage() {
             />
           </div>
         ) : (
-          /* Document Index */
           <>
             <div className="mb-6">
               <input
@@ -167,35 +165,36 @@ export default function DocumentsPage() {
                 placeholder="Search documents..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full px-4 py-3 bg-jcg-navy border border-jcg-border rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-jcg-gold"
+                className="w-full px-4 py-3 bg-white border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-200"
+                style={{ borderColor: '#E0E2E6', color: '#353535' }}
               />
             </div>
 
             <div className="space-y-6">
               {filteredDocs.map((cat, ci) => (
-                <div key={ci} className="bg-jcg-navy border border-jcg-border rounded-xl overflow-hidden">
-                  <div className="px-6 py-3 border-b border-jcg-border bg-jcg-bg/30 flex items-center gap-3">
+                <div key={ci} className="bg-white border rounded-xl overflow-hidden" style={{ borderColor: '#E0E2E6', boxShadow: '0 2px 8px rgba(25,49,74,0.06)' }}>
+                  <div className="px-6 py-3 flex items-center gap-3" style={{ borderBottom: '1px solid #E0E2E6', background: '#F5F6F8' }}>
                     <span className="text-lg">{cat.icon}</span>
-                    <span className="text-sm font-semibold text-white">{cat.category}</span>
-                    <span className="text-xs text-gray-500 ml-auto">{cat.docs.length} items</span>
+                    <span className="text-sm font-semibold" style={{ color: '#19314A' }}>{cat.category}</span>
+                    <span className="text-xs ml-auto" style={{ color: '#88939F' }}>{cat.docs.length} items</span>
                   </div>
-                  <div className="divide-y divide-jcg-border/50">
+                  <div>
                     {cat.docs.map((doc, di) => (
-                      <div key={di} className="px-6 py-3 flex items-center justify-between hover:bg-white/[0.02] transition-colors">
+                      <div key={di} className="px-6 py-3 flex items-center justify-between hover:bg-gray-50 transition-colors" style={{ borderBottom: di < cat.docs.length - 1 ? '1px solid #ECEDF0' : 'none' }}>
                         <div className="flex items-center gap-3">
                           {doc.critical && (
-                            <span className="w-1.5 h-1.5 rounded-full bg-jcg-gold" />
+                            <span className="w-1.5 h-1.5 rounded-full" style={{ background: '#3A7CA5' }} />
                           )}
                           <div>
-                            <div className="text-sm text-white">{doc.name}</div>
+                            <div className="text-sm" style={{ color: '#19314A' }}>{doc.name}</div>
                             {doc.detail && (
-                              <div className="text-xs text-gray-500 mt-0.5">{doc.detail}</div>
+                              <div className="text-xs mt-0.5" style={{ color: '#88939F' }}>{doc.detail}</div>
                             )}
                           </div>
                         </div>
                         <div className="flex items-center gap-3">
-                          <span className="text-xs text-gray-500 font-mono uppercase">{doc.type}</span>
-                          <span className="px-2 py-0.5 text-xs bg-jcg-bg border border-jcg-border rounded text-gray-400">
+                          <span className="text-xs font-mono uppercase" style={{ color: '#88939F' }}>{doc.type}</span>
+                          <span className="px-2 py-0.5 text-xs rounded" style={{ background: '#F5F6F8', border: '1px solid #E0E2E6', color: '#5C6370' }}>
                             {doc.round}
                           </span>
                         </div>

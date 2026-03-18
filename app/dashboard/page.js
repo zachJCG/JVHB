@@ -8,7 +8,7 @@ const counts = [
     status: 'Active',
     preFile: '$175,000',
     postFile: '$350,000',
-    color: 'risk-red',
+    color: 'red',
     basis: 'Terminated for whistleblowing on payroll compliance failures affecting employee wages and tax withholdings',
   },
   {
@@ -17,7 +17,7 @@ const counts = [
     status: 'Active',
     preFile: '$125,000',
     postFile: '$275,000',
-    color: 'risk-red',
+    color: 'red',
     basis: 'Escalated payroll processing failures, data integrity issues, and compliance risks to management; terminated within weeks of escalation',
   },
   {
@@ -26,7 +26,7 @@ const counts = [
     status: 'Active',
     preFile: '$75,000',
     postFile: '$150,000',
-    color: 'risk-amber',
+    color: 'amber',
     basis: 'Relied on representations of continued employment, relocation support, and career trajectory; terminated without cause or notice',
   },
   {
@@ -35,7 +35,7 @@ const counts = [
     status: 'Potential',
     preFile: '$50,000',
     postFile: '$175,000',
-    color: 'risk-amber',
+    color: 'amber',
     basis: 'Pattern of extreme conduct: gaslighting re: performance, abrupt termination during active client work, withholding final pay information',
   },
   {
@@ -44,7 +44,7 @@ const counts = [
     status: 'Potential',
     preFile: '$40,000',
     postFile: '$120,000',
-    color: 'risk-amber',
+    color: 'amber',
     basis: 'Unpaid overtime for weekend/after-hours payroll processing work; misclassification of exempt status given actual duties',
   },
   {
@@ -53,13 +53,10 @@ const counts = [
     status: 'Potential',
     preFile: '$35,000',
     postFile: '$100,000',
-    color: 'jcg-gold',
+    color: 'gold',
     basis: 'Material misrepresentations about role scope, team support, and product readiness during recruiting process',
   },
 ];
-
-const totalPreFile = 500000;
-const totalPostFile = 1170000;
 
 export default function DashboardPage() {
   return (
@@ -68,82 +65,77 @@ export default function DashboardPage() {
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-2xl font-bold text-white">Case Dashboard</h1>
-            <p className="text-gray-400 text-sm mt-1">Joseph v. HiBob, Inc. &mdash; Pre-Filing Phase</p>
+            <h1 className="text-2xl font-bold" style={{ color: '#19314A' }}>Case Dashboard</h1>
+            <p className="text-sm mt-1" style={{ color: '#5C6370' }}>Joseph v. HiBob, Inc. &mdash; Pre-Filing Phase</p>
           </div>
           <div className="flex items-center gap-3">
-            <span className="px-3 py-1.5 bg-risk-amber/10 text-risk-amber text-xs font-medium rounded-full border border-risk-amber/20">
-              Pre-Filing
-            </span>
-            <span className="px-3 py-1.5 bg-jcg-gold/10 text-jcg-gold text-xs font-medium rounded-full border border-jcg-gold/20">
-              6 Counts Identified
-            </span>
+            <span className="badge badge-amber">Pre-Filing</span>
+            <span className="badge badge-accent">6 Counts Identified</span>
           </div>
         </div>
 
         {/* KPI Cards */}
         <div className="grid grid-cols-4 gap-4 mb-8">
           <div className="kpi-card rounded-xl p-5">
-            <div className="text-xs text-gray-400 uppercase tracking-wider mb-1">Current Demand</div>
-            <div className="text-2xl font-bold text-jcg-gold">$500,000</div>
-            <div className="text-xs text-gray-500 mt-1">Pre-filing settlement</div>
+            <div className="section-eyebrow mb-1" style={{ marginBottom: '4px' }}>Current Demand</div>
+            <div className="text-2xl font-bold" style={{ color: '#C8A951' }}>$500,000</div>
+            <div className="text-xs mt-1" style={{ color: '#88939F' }}>Pre-filing settlement</div>
           </div>
           <div className="kpi-card rounded-xl p-5">
-            <div className="text-xs text-gray-400 uppercase tracking-wider mb-1">Post-Filing Max</div>
-            <div className="text-2xl font-bold text-risk-red">$1,170,000</div>
-            <div className="text-xs text-gray-500 mt-1">If complaint is filed</div>
+            <div className="section-eyebrow mb-1" style={{ marginBottom: '4px' }}>Post-Filing Max</div>
+            <div className="text-2xl font-bold" style={{ color: '#C44' }}>$1,170,000</div>
+            <div className="text-xs mt-1" style={{ color: '#88939F' }}>If complaint is filed</div>
           </div>
           <div className="kpi-card rounded-xl p-5">
-            <div className="text-xs text-gray-400 uppercase tracking-wider mb-1">Active Counts</div>
-            <div className="text-2xl font-bold text-white">3</div>
-            <div className="text-xs text-gray-500 mt-1">+ 3 potential counts</div>
+            <div className="section-eyebrow mb-1" style={{ marginBottom: '4px' }}>Active Counts</div>
+            <div className="text-2xl font-bold" style={{ color: '#19314A' }}>3</div>
+            <div className="text-xs mt-1" style={{ color: '#88939F' }}>+ 3 potential counts</div>
           </div>
           <div className="kpi-card rounded-xl p-5">
-            <div className="text-xs text-gray-400 uppercase tracking-wider mb-1">Evidence Items</div>
-            <div className="text-2xl font-bold text-white">140+</div>
-            <div className="text-xs text-gray-500 mt-1">Transcripts, docs, emails</div>
+            <div className="section-eyebrow mb-1" style={{ marginBottom: '4px' }}>Evidence Items</div>
+            <div className="text-2xl font-bold" style={{ color: '#19314A' }}>140+</div>
+            <div className="text-xs mt-1" style={{ color: '#88939F' }}>Transcripts, docs, emails</div>
           </div>
         </div>
 
         {/* Settlement Range Visual */}
-        <div className="bg-jcg-navy border border-jcg-border rounded-xl p-6 mb-8">
-          <h2 className="text-sm font-semibold text-white mb-4">Settlement Range</h2>
+        <div className="bg-white border rounded-xl p-6 mb-8" style={{ borderColor: '#E0E2E6', boxShadow: '0 2px 8px rgba(25,49,74,0.06)' }}>
+          <h2 className="text-sm font-semibold mb-4" style={{ color: '#19314A' }}>Settlement Range</h2>
           <div className="relative">
             <div className="settlement-bar w-full mb-3" />
-            <div className="flex justify-between text-xs text-gray-400">
+            <div className="flex justify-between text-xs" style={{ color: '#88939F' }}>
               <div className="text-center">
-                <div className="font-semibold text-risk-green">$300K</div>
+                <div className="font-semibold" style={{ color: '#2D8A4E' }}>$300K</div>
                 <div>Floor</div>
               </div>
               <div className="text-center">
-                <div className="font-semibold text-jcg-gold">$500K</div>
+                <div className="font-semibold" style={{ color: '#C8A951' }}>$500K</div>
                 <div>Current Demand</div>
               </div>
               <div className="text-center">
-                <div className="font-semibold text-risk-amber">$750K</div>
+                <div className="font-semibold" style={{ color: '#E8960C' }}>$750K</div>
                 <div>Likely (Filed)</div>
               </div>
               <div className="text-center">
-                <div className="font-semibold text-risk-red">$1.17M</div>
+                <div className="font-semibold" style={{ color: '#C44' }}>$1.17M</div>
                 <div>Maximum</div>
               </div>
             </div>
-            {/* Current position marker */}
             <div className="absolute top-0 left-[35%] -translate-x-1/2">
-              <div className="w-4 h-4 bg-jcg-gold rounded-full border-2 border-white -mt-1 pulse-gold" />
+              <div className="w-4 h-4 rounded-full border-2 border-white -mt-1 pulse-accent" style={{ background: '#3A7CA5' }} />
             </div>
           </div>
         </div>
 
         {/* Counts Table */}
-        <div className="bg-jcg-navy border border-jcg-border rounded-xl overflow-hidden">
-          <div className="px-6 py-4 border-b border-jcg-border flex items-center justify-between">
-            <h2 className="text-sm font-semibold text-white">Counts & Valuation</h2>
-            <div className="text-xs text-gray-500">Pre-File → Post-File Range</div>
+        <div className="bg-white border rounded-xl overflow-hidden" style={{ borderColor: '#E0E2E6', boxShadow: '0 2px 8px rgba(25,49,74,0.06)' }}>
+          <div className="px-6 py-4 flex items-center justify-between" style={{ borderBottom: '1px solid #E0E2E6' }}>
+            <h2 className="text-sm font-semibold" style={{ color: '#19314A' }}>Counts & Valuation</h2>
+            <div className="text-xs" style={{ color: '#88939F' }}>Pre-File → Post-File Range</div>
           </div>
           <table className="w-full">
             <thead>
-              <tr className="text-xs text-gray-500 uppercase tracking-wider border-b border-jcg-border">
+              <tr className="text-xs uppercase tracking-wider" style={{ color: '#88939F', borderBottom: '1px solid #E0E2E6' }}>
                 <th className="text-left px-6 py-3">#</th>
                 <th className="text-left px-6 py-3">Count</th>
                 <th className="text-left px-6 py-3">Status</th>
@@ -153,46 +145,42 @@ export default function DashboardPage() {
             </thead>
             <tbody>
               {counts.map((c) => (
-                <tr key={c.id} className="border-b border-jcg-border/50 hover:bg-white/[0.02] transition-colors">
-                  <td className="px-6 py-4 text-sm text-gray-400">{c.id}</td>
+                <tr key={c.id} className="hover:bg-gray-50 transition-colors" style={{ borderBottom: '1px solid #ECEDF0' }}>
+                  <td className="px-6 py-4 text-sm" style={{ color: '#88939F' }}>{c.id}</td>
                   <td className="px-6 py-4">
-                    <div className="text-sm text-white font-medium">{c.name}</div>
-                    <div className="text-xs text-gray-500 mt-0.5 max-w-lg">{c.basis}</div>
+                    <div className="text-sm font-medium" style={{ color: '#19314A' }}>{c.name}</div>
+                    <div className="text-xs mt-0.5 max-w-lg" style={{ color: '#88939F' }}>{c.basis}</div>
                   </td>
                   <td className="px-6 py-4">
-                    <span className={`px-2 py-1 text-xs rounded-full ${
-                      c.status === 'Active'
-                        ? 'bg-risk-green/10 text-risk-green border border-risk-green/20'
-                        : 'bg-risk-amber/10 text-risk-amber border border-risk-amber/20'
-                    }`}>
+                    <span className={`badge ${c.status === 'Active' ? 'badge-green' : 'badge-amber'}`}>
                       {c.status}
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-right text-sm text-gray-300">{c.preFile}</td>
-                  <td className="px-6 py-4 text-right text-sm font-semibold text-jcg-gold">{c.postFile}</td>
+                  <td className="px-6 py-4 text-right text-sm" style={{ color: '#5C6370' }}>{c.preFile}</td>
+                  <td className="px-6 py-4 text-right text-sm font-semibold" style={{ color: '#3A7CA5' }}>{c.postFile}</td>
                 </tr>
               ))}
             </tbody>
             <tfoot>
-              <tr className="bg-jcg-bg/50">
-                <td colSpan="3" className="px-6 py-4 text-sm font-semibold text-white">Total Valuation</td>
-                <td className="px-6 py-4 text-right text-sm font-bold text-white">$500,000</td>
-                <td className="px-6 py-4 text-right text-sm font-bold text-jcg-gold">$1,170,000</td>
+              <tr style={{ background: '#F5F6F8' }}>
+                <td colSpan="3" className="px-6 py-4 text-sm font-semibold" style={{ color: '#19314A' }}>Total Valuation</td>
+                <td className="px-6 py-4 text-right text-sm font-bold" style={{ color: '#19314A' }}>$500,000</td>
+                <td className="px-6 py-4 text-right text-sm font-bold" style={{ color: '#3A7CA5' }}>$1,170,000</td>
               </tr>
             </tfoot>
           </table>
         </div>
 
         {/* Strategy Note */}
-        <div className="mt-6 bg-jcg-gold/5 border border-jcg-gold/20 rounded-xl p-5">
+        <div className="mt-6 rounded-xl p-5" style={{ background: 'rgba(58, 124, 165, 0.06)', border: '1px solid rgba(58, 124, 165, 0.15)' }}>
           <div className="flex items-start gap-3">
-            <span className="text-jcg-gold text-lg">⚡</span>
+            <span style={{ color: '#3A7CA5' }} className="text-lg">⚡</span>
             <div>
-              <div className="text-sm font-semibold text-jcg-gold mb-1">Settlement Strategy</div>
-              <div className="text-sm text-gray-300">
-                Current position is <strong className="text-white">$500,000</strong> pre-filing demand.
+              <div className="text-sm font-semibold mb-1" style={{ color: '#3A7CA5' }}>Settlement Strategy</div>
+              <div className="text-sm" style={{ color: '#5C6370' }}>
+                Current position is <strong style={{ color: '#19314A' }}>$500,000</strong> pre-filing demand.
                 If HiBob does not settle, filing the complaint activates all 6 counts with a maximum
-                exposure of <strong className="text-jcg-gold">$1,170,000</strong>. The additional counts
+                exposure of <strong style={{ color: '#3A7CA5' }}>$1,170,000</strong>. The additional counts
                 (IIED, Wage & Hour, Fraud) significantly increase leverage and litigation cost for defendant.
               </div>
             </div>

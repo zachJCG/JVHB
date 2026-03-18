@@ -2,7 +2,7 @@ import './globals.css';
 
 export const metadata = {
   title: 'Joseph v. HiBob — Case Tracker',
-  description: 'Joseph Carter Group — Case Management System',
+  description: 'JCG + Duwel Law — Case Management System',
 };
 
 export default function RootLayout({ children }) {

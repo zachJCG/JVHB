@@ -2,25 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
 
 :root {
-  --jcg-navy: #1a2744;
-  --jcg-gold: #c9a84c;
-  --jcg-bg: #0f1729;
+  --navy: #19314A;
+  --navy-dark: #0F2035;
+  --charcoal: #2F3A45;
+  --steel: #88939F;
+  --accent: #3A7CA5;
+  --accent-hover: #2D6488;
+  --gold: #C8A951;
+  --gold-hover: #B59541;
+  --bg: #FFFFFF;
+  --bg-light: #F5F6F8;
+  --border: #E0E2E6;
+  --border-light: #ECEDF0;
+  --text: #353535;
+  --text-secondary: #5C6370;
+  --text-light: #88939F;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --shadow-sm: 0 1px 3px rgba(25, 49, 74, 0.06);
+  --shadow-md: 0 4px 12px rgba(25, 49, 74, 0.08);
+  --shadow-lg: 0 8px 30px rgba(25, 49, 74, 0.10);
+  --shadow-card: 0 2px 8px rgba(25, 49, 74, 0.06);
 }
 
 body {
-  background: var(--jcg-bg);
-  color: #e5e7eb;
-  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Montserrat', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.7;
 }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #0f1729; }
-::-webkit-scrollbar-thumb { background: #2a3a5c; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #c9a84c; }
+::-webkit-scrollbar-track { background: var(--bg-light); }
+::-webkit-scrollbar-thumb { background: var(--steel); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
 /* Timeline connector */
 .timeline-line {
@@ -29,43 +51,44 @@ body {
   top: 0;
   bottom: 0;
   width: 2px;
-  background: linear-gradient(to bottom, #c9a84c, #2a3a5c);
+  background: linear-gradient(to bottom, var(--accent), var(--border));
 }
 
 /* Pulse animation for active items */
-@keyframes pulse-gold {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.4); }
-  50% { box-shadow: 0 0 0 8px rgba(201, 168, 76, 0); }
+@keyframes pulse-accent {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(58, 124, 165, 0.4); }
+  50% { box-shadow: 0 0 0 8px rgba(58, 124, 165, 0); }
 }
-.pulse-gold { animation: pulse-gold 2s infinite; }
+.pulse-accent { animation: pulse-accent 2s infinite; }
 
 /* Card hover */
 .card-hover {
-  transition: all 0.2s ease;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .card-hover:hover {
-  border-color: #c9a84c;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 20px rgba(201, 168, 76, 0.1);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
-/* KPI card gradient */
+/* KPI card */
 .kpi-card {
-  background: linear-gradient(135deg, #1a2744 0%, #243352 100%);
-  border: 1px solid #2a3a5c;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
 }
 
 /* Settlement bar */
 .settlement-bar {
-  background: linear-gradient(90deg, #22c55e, #c9a84c, #ef4444);
+  background: linear-gradient(90deg, #2D8A4E, var(--gold), #C44);
   border-radius: 9999px;
   height: 8px;
 }
 
 /* Tab active state */
 .tab-active {
-  border-bottom: 2px solid #c9a84c;
-  color: #c9a84c;
+  border-bottom: 2px solid var(--accent);
+  color: var(--accent);
 }
 
 /* Fade in animation */
@@ -74,3 +97,31 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 .fade-in { animation: fadeIn 0.3s ease forwards; }
+
+/* Badge styles */
+.badge {
+  display: inline-block;
+  padding: 4px 14px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 100px;
+}
+
+.badge-accent { background: rgba(58, 124, 165, 0.1); color: var(--accent); }
+.badge-gold { background: rgba(200, 169, 81, 0.12); color: var(--gold-hover); }
+.badge-red { background: rgba(204, 68, 68, 0.1); color: #C44; }
+.badge-green { background: rgba(45, 138, 78, 0.1); color: #2D8A4E; }
+.badge-amber { background: rgba(232, 150, 12, 0.1); color: #E8960C; }
+
+/* Section eyebrow */
+.section-eyebrow {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: var(--accent);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}

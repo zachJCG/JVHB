@@ -134,14 +134,14 @@ const timelineEvents = [
 ];
 
 const categoryColors = {
-  employment: { bg: 'bg-blue-500/10', text: 'text-blue-400', border: 'border-blue-500/20', dot: 'bg-blue-500' },
-  whistleblower: { bg: 'bg-risk-red/10', text: 'text-risk-red', border: 'border-risk-red/20', dot: 'bg-risk-red' },
-  retaliation: { bg: 'bg-orange-500/10', text: 'text-orange-400', border: 'border-orange-500/20', dot: 'bg-orange-500' },
-  termination: { bg: 'bg-risk-red/10', text: 'text-risk-red', border: 'border-risk-red/20', dot: 'bg-risk-red' },
-  wage: { bg: 'bg-purple-500/10', text: 'text-purple-400', border: 'border-purple-500/20', dot: 'bg-purple-500' },
-  personal: { bg: 'bg-jcg-gold/10', text: 'text-jcg-gold', border: 'border-jcg-gold/20', dot: 'bg-jcg-gold' },
-  legal: { bg: 'bg-jcg-gold/10', text: 'text-jcg-gold', border: 'border-jcg-gold/20', dot: 'bg-jcg-gold' },
-  evidence: { bg: 'bg-risk-green/10', text: 'text-risk-green', border: 'border-risk-green/20', dot: 'bg-risk-green' },
+  employment: { bg: '#EBF5FB', text: '#3A7CA5', border: '#B8D9ED', dot: '#3A7CA5' },
+  whistleblower: { bg: '#FDE8E8', text: '#C44', border: '#F5B7B7', dot: '#C44' },
+  retaliation: { bg: '#FEF3E2', text: '#E8960C', border: '#FDD99B', dot: '#E8960C' },
+  termination: { bg: '#FDE8E8', text: '#C44', border: '#F5B7B7', dot: '#C44' },
+  wage: { bg: '#F0E6FA', text: '#7C3AED', border: '#D4B5F5', dot: '#7C3AED' },
+  personal: { bg: 'rgba(200,169,81,0.1)', text: '#B59541', border: 'rgba(200,169,81,0.3)', dot: '#C8A951' },
+  legal: { bg: 'rgba(58,124,165,0.08)', text: '#3A7CA5', border: 'rgba(58,124,165,0.2)', dot: '#3A7CA5' },
+  evidence: { bg: 'rgba(45,138,78,0.08)', text: '#2D8A4E', border: 'rgba(45,138,78,0.2)', dot: '#2D8A4E' },
 };
 
 const categoryLabels = {
@@ -167,14 +167,15 @@ export default function TimelinePage() {
       <div className="max-w-4xl mx-auto fade-in">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-2xl font-bold text-white">Case Timeline</h1>
-            <p className="text-gray-400 text-sm mt-1">Chronological record of events</p>
+            <h1 className="text-2xl font-bold" style={{ color: '#19314A' }}>Case Timeline</h1>
+            <p className="text-sm mt-1" style={{ color: '#5C6370' }}>Chronological record of events</p>
           </div>
           <div className="flex items-center gap-2">
             <select
               value={filter}
               onChange={(e) => setFilter(e.target.value)}
-              className="bg-jcg-navy border border-jcg-border rounded-lg px-3 py-2 text-sm text-gray-300 focus:outline-none focus:ring-1 focus:ring-jcg-gold"
+              className="bg-white border rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-200"
+              style={{ borderColor: '#E0E2E6', color: '#353535' }}
             >
               <option value="all">All Events</option>
               {Object.entries(categoryLabels).map(([k, v]) => (
@@ -193,32 +194,42 @@ export default function TimelinePage() {
             return (
               <div key={i} className="relative mb-6 fade-in" style={{ animationDelay: `${i * 0.05}s` }}>
                 {/* Dot */}
-                <div className={`absolute left-[-25px] top-5 w-3 h-3 rounded-full ${colors.dot} ${
-                  event.significance === 'critical' ? 'pulse-gold ring-2 ring-offset-2 ring-offset-jcg-bg ring-jcg-gold/30' : ''
-                }`} />
+                <div
+                  className={`absolute left-[-25px] top-5 w-3 h-3 rounded-full ${event.significance === 'critical' ? 'pulse-accent ring-2 ring-offset-2 ring-blue-200' : ''}`}
+                  style={{ background: colors.dot }}
+                />
 
                 {/* Card */}
-                <div className={`bg-jcg-navy border border-jcg-border rounded-xl p-5 card-hover ${
-                  event.significance === 'critical' ? 'border-l-2 border-l-jcg-gold' : ''
-                }`}>
+                <div
+                  className="bg-white border rounded-xl p-5 card-hover"
+                  style={{
+                    borderColor: event.significance === 'critical' ? colors.border : '#E0E2E6',
+                    borderLeftWidth: event.significance === 'critical' ? '3px' : '1px',
+                    borderLeftColor: event.significance === 'critical' ? colors.dot : '#E0E2E6',
+                    boxShadow: '0 2px 8px rgba(25,49,74,0.06)',
+                  }}
+                >
                   <div className="flex items-center gap-3 mb-2">
-                    <span className="text-xs font-mono text-gray-500">{event.date}</span>
-                    <span className={`px-2 py-0.5 text-xs rounded-full ${colors.bg} ${colors.text} border ${colors.border}`}>
+                    <span className="text-xs font-mono" style={{ color: '#88939F' }}>{event.date}</span>
+                    <span
+                      className="px-2 py-0.5 text-xs rounded-full font-semibold"
+                      style={{ background: colors.bg, color: colors.text, border: `1px solid ${colors.border}` }}
+                    >
                       {categoryLabels[event.category]}
                     </span>
                     {event.significance === 'critical' && (
-                      <span className="px-2 py-0.5 text-xs rounded-full bg-risk-red/10 text-risk-red border border-risk-red/20">
+                      <span className="badge badge-red" style={{ fontSize: '0.65rem', padding: '2px 8px' }}>
                         Critical
                       </span>
                     )}
                   </div>
-                  <h3 className="text-white font-semibold mb-1">{event.title}</h3>
-                  <p className="text-sm text-gray-400 leading-relaxed">{event.detail}</p>
+                  <h3 className="font-semibold mb-1" style={{ color: '#19314A' }}>{event.title}</h3>
+                  <p className="text-sm leading-relaxed" style={{ color: '#5C6370' }}>{event.detail}</p>
                   {event.counts.length > 0 && (
                     <div className="flex items-center gap-2 mt-3">
-                      <span className="text-xs text-gray-500">Relevant:</span>
+                      <span className="text-xs" style={{ color: '#88939F' }}>Relevant:</span>
                       {event.counts.map((c) => (
-                        <span key={c} className="px-2 py-0.5 text-xs bg-jcg-bg border border-jcg-border rounded text-gray-400">
+                        <span key={c} className="px-2 py-0.5 text-xs rounded font-medium" style={{ background: '#F5F6F8', border: '1px solid #E0E2E6', color: '#5C6370' }}>
                           Count {c}
                         </span>
                       ))}
