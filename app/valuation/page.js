@@ -72,37 +72,33 @@ const initialCounts = [
 ];
 
 export default function ValuationPage() {
-  const [counts, setCounts] = useState(initialCounts);
+  const [counts] = useState(initialCounts);
   const [expandedId, setExpandedId] = useState(null);
   const [phase, setPhase] = useState('pre');
 
   const totalPreFile = counts.reduce((a, c) => a + c.preFile, 0);
   const totalPostFile = counts.reduce((a, c) => a + c.postFile, 0);
-  const activeCounts = counts.filter((c) => c.status === 'active');
-  const potentialCounts = counts.filter((c) => c.status === 'potential');
 
   return (
     <CaseShell>
       <div className="max-w-6xl mx-auto fade-in">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-2xl font-bold text-white">Valuation & Settlement Strategy</h1>
-            <p className="text-gray-400 text-sm mt-1">Count-by-count breakdown with filing leverage analysis</p>
+            <h1 className="text-2xl font-bold" style={{ color: '#19314A' }}>Valuation & Settlement Strategy</h1>
+            <p className="text-sm mt-1" style={{ color: '#5C6370' }}>Count-by-count breakdown with filing leverage analysis</p>
           </div>
-          <div className="flex bg-jcg-navy border border-jcg-border rounded-lg overflow-hidden">
+          <div className="flex bg-white border rounded-md overflow-hidden" style={{ borderColor: '#E0E2E6' }}>
             <button
               onClick={() => setPhase('pre')}
-              className={`px-4 py-2 text-sm transition-colors ${
-                phase === 'pre' ? 'bg-jcg-gold text-jcg-navy font-semibold' : 'text-gray-400 hover:text-white'
-              }`}
+              className="px-4 py-2 text-sm font-semibold transition-colors"
+              style={phase === 'pre' ? { background: '#19314A', color: 'white' } : { color: '#5C6370' }}
             >
               Pre-Filing
             </button>
             <button
               onClick={() => setPhase('post')}
-              className={`px-4 py-2 text-sm transition-colors ${
-                phase === 'post' ? 'bg-risk-red text-white font-semibold' : 'text-gray-400 hover:text-white'
-              }`}
+              className="px-4 py-2 text-sm font-semibold transition-colors"
+              style={phase === 'post' ? { background: '#C44', color: 'white' } : { color: '#5C6370' }}
             >
               Post-Filing
             </button>
@@ -112,36 +108,36 @@ export default function ValuationPage() {
         {/* Summary Cards */}
         <div className="grid grid-cols-3 gap-4 mb-8">
           <div className="kpi-card rounded-xl p-5">
-            <div className="text-xs text-gray-400 uppercase tracking-wider mb-1">
+            <div className="section-eyebrow" style={{ marginBottom: '4px' }}>
               {phase === 'pre' ? 'Current Demand' : 'Filing Demand'}
             </div>
-            <div className={`text-3xl font-bold ${phase === 'pre' ? 'text-jcg-gold' : 'text-risk-red'}`}>
+            <div className="text-3xl font-bold" style={{ color: phase === 'pre' ? '#C8A951' : '#C44' }}>
               ${phase === 'pre' ? totalPreFile.toLocaleString() : totalPostFile.toLocaleString()}
             </div>
-            <div className="text-xs text-gray-500 mt-1">
+            <div className="text-xs mt-1" style={{ color: '#88939F' }}>
               {phase === 'pre' ? 'Settlement target' : 'Maximum exposure for defendant'}
             </div>
           </div>
           <div className="kpi-card rounded-xl p-5">
-            <div className="text-xs text-gray-400 uppercase tracking-wider mb-1">Filing Multiplier</div>
-            <div className="text-3xl font-bold text-white">
+            <div className="section-eyebrow" style={{ marginBottom: '4px' }}>Filing Multiplier</div>
+            <div className="text-3xl font-bold" style={{ color: '#19314A' }}>
               {(totalPostFile / totalPreFile).toFixed(1)}x
             </div>
-            <div className="text-xs text-gray-500 mt-1">Increase if complaint is filed</div>
+            <div className="text-xs mt-1" style={{ color: '#88939F' }}>Increase if complaint is filed</div>
           </div>
           <div className="kpi-card rounded-xl p-5">
-            <div className="text-xs text-gray-400 uppercase tracking-wider mb-1">Defendant Litigation Cost</div>
-            <div className="text-3xl font-bold text-risk-amber">$200K+</div>
-            <div className="text-xs text-gray-500 mt-1">Estimated defense costs through trial</div>
+            <div className="section-eyebrow" style={{ marginBottom: '4px' }}>Defendant Litigation Cost</div>
+            <div className="text-3xl font-bold" style={{ color: '#E8960C' }}>$200K+</div>
+            <div className="text-xs mt-1" style={{ color: '#88939F' }}>Estimated defense costs through trial</div>
           </div>
         </div>
 
         {/* Leverage Analysis */}
-        <div className="bg-jcg-navy border border-jcg-border rounded-xl p-6 mb-8">
-          <h2 className="text-sm font-semibold text-white mb-4">Settlement Leverage Analysis</h2>
+        <div className="bg-white border rounded-xl p-6 mb-8" style={{ borderColor: '#E0E2E6', boxShadow: '0 2px 8px rgba(25,49,74,0.06)' }}>
+          <h2 className="text-sm font-semibold mb-4" style={{ color: '#19314A' }}>Settlement Leverage Analysis</h2>
           <div className="grid grid-cols-2 gap-6">
             <div>
-              <h3 className="text-xs uppercase tracking-wider text-gray-500 mb-3">Why HiBob Should Settle Now</h3>
+              <h3 className="text-xs uppercase tracking-wider mb-3" style={{ color: '#88939F' }}>Why HiBob Should Settle Now</h3>
               <ul className="space-y-2">
                 {[
                   'Avoid discovery exposing internal payroll compliance failures',
@@ -151,15 +147,15 @@ export default function ValuationPage() {
                   'Filing adds 3 additional counts increasing max exposure to $1.17M',
                   'Strong whistleblower timeline — escalation-to-termination gap is narrow',
                 ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-2 text-sm text-gray-300">
-                    <span className="text-risk-green mt-0.5">✓</span>
+                  <li key={i} className="flex items-start gap-2 text-sm" style={{ color: '#5C6370' }}>
+                    <span style={{ color: '#2D8A4E' }} className="mt-0.5">✓</span>
                     {item}
                   </li>
                 ))}
               </ul>
             </div>
             <div>
-              <h3 className="text-xs uppercase tracking-wider text-gray-500 mb-3">Risk Factors (Our Side)</h3>
+              <h3 className="text-xs uppercase tracking-wider mb-3" style={{ color: '#88939F' }}>Risk Factors (Our Side)</h3>
               <ul className="space-y-2">
                 {[
                   'At-will employment is default under Ohio law — need clear public policy hook',
@@ -167,8 +163,8 @@ export default function ValuationPage() {
                   'SOX applicability depends on HiBob\'s reporting obligations',
                   'Wage & hour claims require detailed hour tracking documentation',
                 ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-2 text-sm text-gray-300">
-                    <span className="text-risk-amber mt-0.5">⚠</span>
+                  <li key={i} className="flex items-start gap-2 text-sm" style={{ color: '#5C6370' }}>
+                    <span style={{ color: '#E8960C' }} className="mt-0.5">⚠</span>
                     {item}
                   </li>
                 ))}
@@ -179,74 +175,71 @@ export default function ValuationPage() {
 
         {/* Count Details */}
         <div className="space-y-3">
-          <h2 className="text-sm font-semibold text-white mb-2">Count Details</h2>
+          <h2 className="text-sm font-semibold mb-2" style={{ color: '#19314A' }}>Count Details</h2>
 
           {['Core', 'Supplemental'].map((cat) => (
             <div key={cat}>
-              <div className="text-xs uppercase tracking-wider text-gray-500 mb-2 mt-4">{cat} Counts</div>
+              <div className="text-xs uppercase tracking-wider mb-2 mt-4" style={{ color: '#88939F' }}>{cat} Counts</div>
               {counts.filter((c) => c.category === cat).map((count) => (
                 <div
                   key={count.id}
-                  className="bg-jcg-navy border border-jcg-border rounded-xl mb-3 overflow-hidden card-hover"
+                  className="bg-white border rounded-xl mb-3 overflow-hidden card-hover"
+                  style={{ borderColor: '#E0E2E6', boxShadow: '0 2px 8px rgba(25,49,74,0.06)' }}
                 >
                   <button
                     onClick={() => setExpandedId(expandedId === count.id ? null : count.id)}
                     className="w-full px-6 py-4 flex items-center justify-between text-left"
                   >
                     <div className="flex items-center gap-4">
-                      <span className="text-lg font-bold text-gray-500 w-8">#{count.id}</span>
+                      <span className="text-lg font-bold w-8" style={{ color: '#88939F' }}>#{count.id}</span>
                       <div>
-                        <div className="text-sm font-medium text-white">{count.name}</div>
-                        <div className="text-xs text-gray-500 mt-0.5">{count.description.slice(0, 80)}...</div>
+                        <div className="text-sm font-medium" style={{ color: '#19314A' }}>{count.name}</div>
+                        <div className="text-xs mt-0.5" style={{ color: '#88939F' }}>{count.description.slice(0, 80)}...</div>
                       </div>
                     </div>
                     <div className="flex items-center gap-6">
-                      <span className={`px-2 py-1 text-xs rounded-full ${
-                        count.status === 'active'
-                          ? 'bg-risk-green/10 text-risk-green border border-risk-green/20'
-                          : 'bg-risk-amber/10 text-risk-amber border border-risk-amber/20'
-                      }`}>
+                      <span className={`badge ${count.status === 'active' ? 'badge-green' : 'badge-amber'}`}>
                         {count.status === 'active' ? 'Active' : 'Potential'}
                       </span>
                       <div className="text-right">
-                        <div className={`text-sm font-bold ${phase === 'pre' ? 'text-jcg-gold' : 'text-risk-red'}`}>
+                        <div className="text-sm font-bold" style={{ color: phase === 'pre' ? '#C8A951' : '#C44' }}>
                           ${phase === 'pre' ? count.preFile.toLocaleString() : count.postFile.toLocaleString()}
                         </div>
                       </div>
-                      <span className="text-gray-500 text-sm">{expandedId === count.id ? '▲' : '▼'}</span>
+                      <span style={{ color: '#88939F' }} className="text-sm">{expandedId === count.id ? '▲' : '▼'}</span>
                     </div>
                   </button>
 
                   {expandedId === count.id && (
-                    <div className="px-6 pb-5 border-t border-jcg-border pt-4 fade-in">
+                    <div className="px-6 pb-5 pt-4 fade-in" style={{ borderTop: '1px solid #E0E2E6' }}>
                       <div className="grid grid-cols-2 gap-6">
                         <div>
-                          <div className="text-xs uppercase tracking-wider text-gray-500 mb-2">Description</div>
-                          <p className="text-sm text-gray-300 leading-relaxed">{count.description}</p>
+                          <div className="text-xs uppercase tracking-wider mb-2" style={{ color: '#88939F' }}>Description</div>
+                          <p className="text-sm leading-relaxed" style={{ color: '#5C6370' }}>{count.description}</p>
                         </div>
                         <div>
-                          <div className="text-xs uppercase tracking-wider text-gray-500 mb-2">Legal Basis</div>
-                          <p className="text-sm text-gray-300 leading-relaxed">{count.legalBasis}</p>
+                          <div className="text-xs uppercase tracking-wider mb-2" style={{ color: '#88939F' }}>Legal Basis</div>
+                          <p className="text-sm leading-relaxed" style={{ color: '#5C6370' }}>{count.legalBasis}</p>
                         </div>
                       </div>
                       <div className="mt-4">
-                        <div className="text-xs uppercase tracking-wider text-gray-500 mb-2">Key Evidence</div>
-                        <p className="text-sm text-gray-300 leading-relaxed">{count.evidence}</p>
+                        <div className="text-xs uppercase tracking-wider mb-2" style={{ color: '#88939F' }}>Key Evidence</div>
+                        <p className="text-sm leading-relaxed" style={{ color: '#5C6370' }}>{count.evidence}</p>
                       </div>
                       <div className="mt-4 flex items-center gap-6">
                         <div>
-                          <div className="text-xs text-gray-500">Pre-Filing</div>
-                          <div className="text-lg font-bold text-jcg-gold">${count.preFile.toLocaleString()}</div>
+                          <div className="text-xs" style={{ color: '#88939F' }}>Pre-Filing</div>
+                          <div className="text-lg font-bold" style={{ color: '#C8A951' }}>${count.preFile.toLocaleString()}</div>
                         </div>
-                        <div className="text-gray-600">→</div>
+                        <div style={{ color: '#E0E2E6' }}>→</div>
                         <div>
-                          <div className="text-xs text-gray-500">Post-Filing</div>
-                          <div className="text-lg font-bold text-risk-red">${count.postFile.toLocaleString()}</div>
+                          <div className="text-xs" style={{ color: '#88939F' }}>Post-Filing</div>
+                          <div className="text-lg font-bold" style={{ color: '#C44' }}>${count.postFile.toLocaleString()}</div>
                         </div>
-                        <div className="text-gray-600">→</div>
+                        <div style={{ color: '#E0E2E6' }}>→</div>
                         <div>
-                          <div className="text-xs text-gray-500">Multiplier</div>
-                          <div className="text-lg font-bold text-white">{(count.postFile / count.preFile).toFixed(1)}x</div>
+                          <div className="text-xs" style={{ color: '#88939F' }}>Multiplier</div>
+                          <div className="text-lg font-bold" style={{ color: '#19314A' }}>{(count.postFile / count.preFile).toFixed(1)}x</div>
                         </div>
                       </div>
                     </div>
@@ -258,21 +251,21 @@ export default function ValuationPage() {
         </div>
 
         {/* Decision Matrix */}
-        <div className="mt-8 bg-jcg-gold/5 border border-jcg-gold/20 rounded-xl p-6">
-          <h2 className="text-sm font-semibold text-jcg-gold mb-4">Decision Matrix: Settle vs. File</h2>
+        <div className="mt-8 rounded-xl p-6" style={{ background: 'rgba(58,124,165,0.06)', border: '1px solid rgba(58,124,165,0.15)' }}>
+          <h2 className="text-sm font-semibold mb-4" style={{ color: '#3A7CA5' }}>Decision Matrix: Settle vs. File</h2>
           <div className="grid grid-cols-2 gap-6">
-            <div className="bg-jcg-bg/50 rounded-lg p-4">
-              <div className="text-sm font-semibold text-risk-green mb-2">✓ Settle at $500K</div>
-              <ul className="space-y-1 text-xs text-gray-400">
+            <div className="rounded-lg p-4" style={{ background: '#F5F6F8' }}>
+              <div className="text-sm font-semibold mb-2" style={{ color: '#2D8A4E' }}>✓ Settle at $500K</div>
+              <ul className="space-y-1 text-xs" style={{ color: '#5C6370' }}>
                 <li>• Immediate resolution, no litigation risk</li>
                 <li>• Avoids 12–18 month litigation timeline</li>
                 <li>• Confidential settlement preserves both parties</li>
                 <li>• No discovery exposure for either side</li>
               </ul>
             </div>
-            <div className="bg-jcg-bg/50 rounded-lg p-4">
-              <div className="text-sm font-semibold text-risk-red mb-2">⚡ File — Escalate to $1.17M</div>
-              <ul className="space-y-1 text-xs text-gray-400">
+            <div className="rounded-lg p-4" style={{ background: '#F5F6F8' }}>
+              <div className="text-sm font-semibold mb-2" style={{ color: '#C44' }}>⚡ File — Escalate to $1.17M</div>
+              <ul className="space-y-1 text-xs" style={{ color: '#5C6370' }}>
                 <li>• All 6 counts become active at maximum valuation</li>
                 <li>• Discovery forces production of internal communications</li>
                 <li>• Depositions of decision-makers</li>
